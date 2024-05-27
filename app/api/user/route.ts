@@ -16,11 +16,11 @@ export async function POST(req: NextRequest) {
 }
 
 
-// export async function GET() {
-//     const user=await client.signupdata.findFirst({})
+export async function GET() {
+    const user=await client.signupdata.findFirst({})
 
-//     return Response.json({
-//         username:user?.username,
-//         password:user?.password
-//     })
-// }
+    return Response.json({
+        username:user?.username,
+        password:user?.password
+    })
+}

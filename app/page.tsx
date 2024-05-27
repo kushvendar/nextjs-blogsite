@@ -1,9 +1,19 @@
 import axios from "axios";
-import Signup from "./signup/page";
+import { PrismaClient } from "@prisma/client";
 
-async function getUserDetails() {
-  const response = await axios.get("http://localhost:3000/api/user")
-	return response.data;
+
+// async function getUserDetails() {
+//   const response = await axios.get("http://localhost:3000/api/user")
+// 	return response.data;
+// }
+const client=new PrismaClient()
+async function getUserDetails(){
+  try {
+    const user= await client.signupdata.findFirst({})
+    return user
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 export default async function Home() {
@@ -13,16 +23,13 @@ export default async function Home() {
     <div className="flex flex-col justify-center h-screen">
         <div className="flex justify-center">
             <div className="border p-8 rounded">
-              {/* <div>
-                This data is going from sigup route to api/user backend
-                and then to the neon db database and coming back 
-                to the same / path and being displayed
+              <div>
               </div>
                 <div>
                     Name: {userData?.username}
                 </div>
                 
-                {userData?.password} */}
+                {userData?.password}
                 hi there
             </div>
         </div>
